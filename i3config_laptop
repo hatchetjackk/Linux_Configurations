@@ -1,0 +1,350 @@
+#  
+#		'####::'#######::'##:::::'##:'##::::'##:
+#		. ##::'##.... ##: ##:'##: ##: ###::'###:
+#		: ##::..::::: ##: ##: ##: ##: ####'####:
+#		: ##:::'#######:: ##: ##: ##: ## ### ##:
+#		: ##:::...... ##: ##: ##: ##: ##. #: ##:
+#		: ##::'##:::: ##: ##: ##: ##: ##:.:: ##:
+#		'####:. #######::. ###. ###:: ##:::: ##:
+#		....:::.......::::...::...:::..:::::..::
+
+#::::::::::::::::::::::::::: Default settings ::::::::::::::::::::::::::::::::#
+
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 9
+
+# thin borders
+hide_edge_borders both
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec xfce4-terminal
+
+# kill focused window
+bindsym $mod+q kill
+
+#:::::::::::::::::::::::::: Color Customizations :::::::::::::::::::::::::::::#
+# Nord
+set $branco1				#d8dee9
+set $branco2				#e5e9f0
+set $branco3				#eceff4
+set $cinza1				#2e3440
+set $cinza2				#3b4252
+set $cinza3				#434c5e
+set $cinza4				#4c566a
+set $verde				#8fbcbb
+set $verde2				#a3be8c
+set $azul				#88c0d0
+set $azul2				#81a1c1
+set $azul3				#5e81ac
+set $vermelho				#bf616a
+set $laranja				#d08770
+set $amarelo				#ebcb8b
+set $roxo				#b48ead
+
+set $branco                 		#ffffff
+set $preto				#000000
+set $cinza				#8c8b8b
+set $fundo                  		#1b1b1b
+set $fundo-inativo          		#222222
+set $texto                  		#ffffff
+set $texto-ativo            		#3465a4
+set $texto-inativo          		#888888
+set $texto-urgente          		#cc5252
+set $fundo-urgente          		#900000
+set $indicador              		#00ff00
+set $separador              		#666666
+set $borda				#5b6365
+set $semitransparente			#00000073
+set $transparente			#00000000
+
+#                       BORDER      	BACKGROUND  	TEXT        	INDICATOR   	CHILD_BORDER
+client.focused          $borda		$fundo-inativo  $texto          $borda		$borda
+client.unfocused        $borda		$fundo-inativo  $texto-inativo	$fundo-inativo	$borda
+client.focused_inactive $borda		$fundo-inativo  $texto-inativo	$fundo-inativo	$borda
+client.urgent           $borda		$fundo-inativo  $texto-urgente  $fundo-inativo	$borda
+
+
+
+#--------------------------------  Rofi ---------------------------------------#
+
+bindsym $mod+d exec rofi -show run -theme sidebar.rasi
+
+
+#:::::::::::::::::::::::: i3 default config window ::::::::::::::::::::::::::::#
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+ntilde focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+ntilde move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+#::::::::::::::::::::::::::::: Customize Workspace Names :::::::::::::::::::::::::::::::::::#
+set $WS1   "1:  BASH"
+set $WS2   "2:  Code"
+set $WS3   "3:  Net"
+set $WS4   "4:  Files"
+set $WS5   "5:  Email "
+set $WS6   "6:  Music "
+set $WS7   "7:  Design "
+set $WS8   "8:  Chat "
+set $WS9   "9:  Git "
+set $WS0   "10:  VM "
+
+# switch to workspace
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+bindsym $mod+8 workspace $WS8
+bindsym $mod+9 workspace $WS9
+bindsym $mod+0 workspace $WS0
+
+# move to next/prev workspace
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
+bindsym $mod+Shift+7 move container to workspace $WS7
+bindsym $mod+Shift+8 move container to workspace $WS8
+bindsym $mod+Shift+9 move container to workspace $WS9
+bindsym $mod+Shift+0 move container to workspace $WS0
+
+#:::::::::::::::::::::::::::::::::: Assign Workspaces :::::::::::::::::::::::::::::::::::::::::::#
+
+#class							#workspace
+assign [class="Eclipse"]				$ws2
+assign [class="Subl3"]					$ws2
+assign [class="Firefox"]				$ws3
+assign [class="Thunar"]					$ws4
+assign [class="Thunderbird"]				$ws5
+assign [class="Google Play Music Desktop Player"]	$ws6
+assign [class="Gimp"]					$ws7
+assign [class="discord"]				$ws8
+assign [class="(?i)virtualbox"]				$ws0
+assign [class="Forticlientsslvpn"]			$ws0
+#assign [class="Kalu"]					$ws0
+assign [class="GitKraken"]				$ws9
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+#scrot
+#bindysm --release Insert exec scrot
+bindsym --release $mod+Print exec scrot -s -e 'mv $f ~/Pictures/Screenshots'
+
+#:::::::::::::::::::::::::::::::: POWER MANAGEMENT ::::::::::::::::::::::::::::::::::::::::::::::#
+
+set $Lock i3lock -f -i /home/hatchetjackk/Pictures/Wallpapers/octoship.png && sleep 1
+set $Locker betterlockscreen -l && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id betterlockscreen --suspend && sleep 1 && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Lock && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+bindsym $mod+r mode "resize"
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym ntilde resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+#:::::::::::::::::::::::::::::::: i3 bar ::::::::::::::::::::::::::::::::::::#
+
+bar {
+	font pango:Hack, FontAwesome 8
+	tray_padding	2 px
+	status_command	i3status 
+	i3bar_command	i3bar -t
+	position	top
+	separator_symbol " | "
+	colors {
+		statusline		$cinza
+		background		$transparente
+		separator		$cinza
+
+		focused_workspace	$transparente	$transparente	$branco
+		inactive_workspace	$transparente	$transparente	$cinza
+		urgent_workspace	$transparente	$transparente	$texto-urgente		
+    }
+}
+#::::::::::::::::::::::::::::: Frame window :::::::::::::::::::::::::::::::::::#
+
+# floating windows
+#for_window [class="Kalu"] floating enable
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+# Multimedia Keys
+
+# volume
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+
+# granular volume control
+bindsym $mod+XF86AudioRaiseVolume exec amixer -D pulse sset Master 1%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+XF86AudioLowerVolume exec amixer -D pulse sset Master 1%- && pkill -RTMIN+1 i3blocks
+
+# mute
+bindsym XF86AudioMute exec amixer sset Master toggle && killall -USR1 i3blocks
+
+#bindsym XF86AudioPlay exec playerctl play
+#bindsym XF86AudioPause exec playerctl pause
+#bindsym XF86AudioNext exec playerctl next
+#bindsym XF86AudioPrev exec playerctl previous
+
+bindsym XF86AudioPlay exec mocp --toggle-pause
+bindsym XF86AudioPause exec mocp --toggle-pause
+bindsym XF86AudioStop exec mocp --togle-pause
+bindsym XF86AudioNext exec mocp --next
+bindsym XF86AudioPrev exec mocp --previous
+
+bindsym $mod+F5 exec mocp --toggle-pause
+bindsym $mod+F6 exec mocp --stop
+bindsym $mod+F7 exec mocp --previous
+bindsym $mod+F8 exec mocp --next
+
+# App shortcuts
+
+# Redirect sound to headphones
+#bindsym $mod+m exec "/usr/local/bin/switch-audio-port"
+
+#::::::::::::::::::::::::::::: Applications :::::::::::::::::::::::::::::::::::#
+
+# Autostart apps
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id compton
+exec --no-startup-id feh --bg-scale Pictures/Wallpapers/octoship.jpg
+exec --no-startup-id volumeicon
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id "sleep 5s && kalu"
+exec --no-startup-id nm-applet
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+# Gaps
+gaps inner 4
+for_window [class="^.*"] border pixel 1
+new_window pixel 1
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+# Polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
